@@ -39,8 +39,12 @@ After this you will need to install the `AWS CLI` by following [these instructio
 ```
     
 and entering your credentials, noting that our default region is `eu-west-2` (which is London).
+
 ## Use
-TODO
+
+### Access results
+
+Flow results can be accessed through the metaflow client API, and do not require installing `research_daps` directly. For detailed documentation, see the [official docs](https://docs.metaflow.org/metaflow/client).
 
 # External Users
 
