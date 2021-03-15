@@ -23,7 +23,7 @@ class TopSBMFlow(FlowSpec):
 
     @step
     def start(self):
-        """Fetch abstracts"""
+        """Load documents from `input_file`."""
 
         data = json.loads(self.input_file)
         self.titles = list(data.keys())[: self.n_docs]
@@ -35,7 +35,7 @@ class TopSBMFlow(FlowSpec):
 
     @step
     def make_graph(self):
-        """Build model graph"""
+        """Build model graph."""
         from sbmtm import sbmtm
 
         self.model = sbmtm()
@@ -44,23 +44,19 @@ class TopSBMFlow(FlowSpec):
 
     @step
     def train_model(self):
-        """Train topSBM topic model itself"""
+        """Train topSBM topic model."""
         import graph_tool.all as gt
 
-        print(self.seed)
+        print(f"graphtool rng seed: {self.seed}")
         gt.seed_rng(self.seed)
-
         self.model.fit()
-        print("FIT")
         self.model = self.model
-        print("Re-assign")
 
         self.next(self.end)
 
     @step
     def end(self):
-        """ """
-        # Calls to `self.model` won't work here as graph-tool not installed
+        """Fin."""
         pass
 
 
