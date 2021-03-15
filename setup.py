@@ -1,5 +1,9 @@
+import subprocess
 from setuptools import setup
 from setuptools import find_namespace_packages
+
+subprocess.run(["sh", "preinstall.sh"])
+
 from research_daps import __version__, __basedir__
 
 version = ''.join(v for v in __version__ if (v.isnumeric() or v == '.'))
