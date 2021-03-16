@@ -1,3 +1,4 @@
+metaflow
 mysql-connector-python==8.0.22
 daps_utils @ git+https://github.com/nestauk/daps_utils@81b8411
 toolz>=0.11,<2
