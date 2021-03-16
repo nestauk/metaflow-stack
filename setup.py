@@ -2,6 +2,7 @@ import os
 import subprocess
 from setuptools import setup
 from setuptools import find_namespace_packages
+from setuptools.command.install import install as install_orig
 from setuptools.command.develop import develop as develop_orig
 
 os.environ["IN_SETUP"] = "1"  # noqa: E402
@@ -23,10 +24,23 @@ def git_crypt_lock():
         raise OSError(result.returncode, result.stderr)
 
 
+def _post_install():
+    """Run `post-install-hook.sh`."""
+    o = subprocess.run(["sh", "bin/post-install-hook.sh"], capture_output=True)
+    if o.returncode != 0:
+        raise OSError(o.returncode, "Post install hook failed")
+
+
 class develop(develop_orig):
     def run(self):
+        _post_install()
         super().run()
-        subprocess.run(["sh", "bin/post-install-hook.sh"])
+
+
+class install(install_orig):
+    def run(self):
+        _post_install()
+        super().run()
 
 
 git_crypt_lock()
@@ -61,7 +75,7 @@ common_kwargs = dict(
 
 setup(
     name="research_daps",
-    cmdclass={"develop": develop},
+    cmdclass={"install": install, "develop": develop},
     packages=find_namespace_packages(where=".", exclude=exclude),
     **common_kwargs,
 )
