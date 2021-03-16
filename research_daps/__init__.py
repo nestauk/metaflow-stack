@@ -1,8 +1,12 @@
+import os
+
+IN_SETUP = "IN_SETUP" in os.environ  # True if called from `setup.py`
 ################################################################
 # Text automatically added by daps-utils metaflowtask-init     #
-from .__initplus__ import load_current_version, __basedir__, load_config
+from .__initplus__ import load_current_version, __basedir__, load_config  # noqa: E402
+
 try:
-    config = load_config()
+    config = {} if IN_SETUP else load_config()
 except ModuleNotFoundError as exc:
     print(exc)
 __version__ = load_current_version()
@@ -14,10 +18,11 @@ def declarative_base(prefix=""):
     import re
 
     def camel_to_snake(str_):
-        return re.sub(r'((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z]))', r'_\1', str_).lower()
+        return re.sub(r"((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z]))", r"_\1", str_).lower()
 
     class _Base(object):
         """ Research DAPS Base object"""
+
         @declared_attr
         def __tablename__(cls):
             return prefix + camel_to_snake(cls.__name__)
