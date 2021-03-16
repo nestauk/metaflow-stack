@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import graph_tool.all as gt
 import numpy as np
+from graph_tool.inference.nested_blockmodel import NestedBlockState
 
 
 class sbmtm:
@@ -21,7 +22,7 @@ class sbmtm:
     g: gt.Graph
     words: List[str]
     documents: List[str]
-    state: gt.inference.nested_blockmodel.NestedBlockState
+    state: NestedBlockState
     groups: Dict[int, Dict[str, Union[int, np.ndarray]]]
     mdl: float
     L: int
