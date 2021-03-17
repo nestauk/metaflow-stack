@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "research_daps"
-version = "21.03.17+31_extra_setup"
+version = "21.03.17+24_topsbm"
 description = ""
 authors = ["Nesta <software_development@nesta.org.uk>"]
 maintainers = ["bishax <alex.bishop@nesta.org.uk>"]
