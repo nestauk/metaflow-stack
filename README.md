@@ -15,30 +15,22 @@ Rationale for a research DAPS:
 
 ## Configuration
 
-First install `git-crypt` by [reading their docs](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md).
+Ensure you have [`awscli` installed](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html),
+ AWS configured to `eu-west-2` with a Nesta account,
+  and  [`git-crypt` installed](https://github.com/AGWA/git-crypt/blob/master/INSTALL.md).
 
 Then:
 
 ```bash
     git clone git@github.com:nestauk/research-daps.git
-    git-crypt unlock /path/to/research_daps.key
+    pip install -e .
 ```
     
-Note that `research_daps.key` can be found on S3 in the `nesta-production-config` bucket.
-
 You should then configure Metaflow and AWS. To use the default settings (highly recommended), we advise against using Metaflow's configure script and instead simply to copy our config:
 
 ```bash
     cp -r research_daps/config/metaflowconfig ~/.metaflowconfig
 ```
-    
-After this you will need to install the `AWS CLI` by following [these instructions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and then run
-
-```bash
-    aws configure
-```
-    
-and entering your credentials, noting that our default region is `eu-west-2` (which is London).
 
 ## Use
 

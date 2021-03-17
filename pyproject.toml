@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "research_daps"
+version = "21.03.17+31_extra_setup"
+description = ""
+authors = ["Nesta <software_development@nesta.org.uk>"]
+maintainers = ["bishax <alex.bishop@nesta.org.uk>"]
+include = ["research_daps/config/metaflowtask/*"]
+exclude = ["research_daps/tasks", "research_daps/config/"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/nestauk/research_daps"
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+daps-utils = {git = "https://github.com/nestauk/daps_utils", rev = "53_fix_pip_install"}
+metaflow = "^2.0.5"
+toolz = "^0.11.1"
+numpy = "^1.20"
+tqdm = "^4.59.0"
+awscli = "^1.19.29"
+sh = "^1.14.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+black = "^20.8b1"
+flake8 = "^3.9.0"
+flake8-black = "^0.2.1"
+mypy = "^0.812"
+flake8-bugbear = "^21.3.2"
+flake8-docstrings = "^1.5.0"
+flake8-bandit = "^2.1.2"
+pep8-naming = "^0.11.1"
+darglint = "^1.7.0"
+reorder-python-imports = "^2.4.0"
+flake8-import-order = "^0.18.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
