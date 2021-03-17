@@ -5,7 +5,7 @@ from metaflow import FlowSpec, IncludeFile, Parameter, step
 
 
 class TopSBMFlow(FlowSpec):
-    """Fit topic model"""
+    """Fit a TopSBM topic model."""
 
     n_docs = Parameter(
         "n-docs",
@@ -16,7 +16,8 @@ class TopSBMFlow(FlowSpec):
 
     input_file = IncludeFile(
         "input-file",
-        help="Input JSON file, mapping document id to document tokens. Structure: Dict[str: List[str]]",
+        help="Input JSON file, mapping document id to document tokens."
+        " Structure: Dict[str: List[str]]",
     )
 
     seed = Parameter("seed", default=32, type=int, help="Pseudo-RNG seed.")
@@ -24,7 +25,6 @@ class TopSBMFlow(FlowSpec):
     @step
     def start(self):
         """Load documents from `input_file`."""
-
         data = json.loads(self.input_file)
         self.titles = list(data.keys())[: self.n_docs]
         self.texts = [data[k] for k in self.titles][: self.n_docs]
@@ -36,9 +36,9 @@ class TopSBMFlow(FlowSpec):
     @step
     def make_graph(self):
         """Build model graph."""
-        from sbmtm import sbmtm
+        from sbmtm import Sbmtm
 
-        self.model = sbmtm()
+        self.model = Sbmtm()
         self.model.make_graph(self.texts, documents=self.titles)
         self.next(self.train_model)
 
