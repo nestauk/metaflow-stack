@@ -73,10 +73,10 @@ class Sbmtm:
             counts: Save edge-multiplicity as counts
             n_min: Filter all word-nodes with less than n_min counts
         """
-        d = len(list_texts)
+        n_docs = len(list_texts)
 
         # If there are no document titles, we assign integers 0,...,d-1
-        list_titles = documents or [str(h) for h in range(d)]
+        list_titles = documents or [str(h) for h in range(n_docs)]
 
         # create a graph
         g = gt.Graph(directed=False)
@@ -92,13 +92,13 @@ class Sbmtm:
         words_add: dict = defaultdict(lambda: g.add_vertex())
 
         # add all documents first
-        for i_d in range(d):
+        for i_d in range(n_docs):
             title = list_titles[i_d]
             d = docs_add[title]
 
         # add all documents and words as nodes
         # add all tokens as links
-        for i_d in range(d):
+        for i_d in range(n_docs):
             title = list_titles[i_d]
             text = list_texts[i_d]
 
