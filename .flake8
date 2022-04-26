@@ -1,5 +1,26 @@
 [flake8]
-extend-ignore = E203, E266, E501
-max-line-length = 88
-max-complexity = 18
-select = B,C,E,F,W,T4,B9
+# ANN - annotations
+# B,B9 - Bugbear
+# BLK - Black
+# C - complexity
+# D - docstrings
+# DAR - darglint (checks docstrings)
+# E - pycodestyle errors
+# F - pyflakes
+# I - Import order
+# N - PEP8 naming
+# T4 - mypy
+# W - pycodestyle warnings
+select = ANN,B,B9,BLK,C,D,DAR,E,F,I,N,W
+# E203 - whitespace before ':'
+# E266 - Block comments "## comment"
+# E501 - line length (dealt with by bugbear)
+# W503 - linebreak before binary op
+ignore = E203,E266,E501,W503
+max-complexity = 10
+max-line-length = 80
+application-import-names = research_daps,tests
+import-order-style = smarkets
+per-file-ignores =
+    tests/*:ANN
+docstring-convention = google
