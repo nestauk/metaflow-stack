@@ -16,7 +16,8 @@ select = ANN,B,B9,BLK,C,D,DAR,E,F,I,N,W
 # E266 - Block comments "## comment"
 # E501 - line length (dealt with by bugbear)
 # W503 - linebreak before binary op
-ignore = E203,E266,E501,W503
+# B305 - .next() is not a thing on Python3 (conflicts with metaflow)
+ignore = E203,E266,E501,W503,B305
 max-complexity = 10
 max-line-length = 80
 application-import-names = research_daps,tests
